@@ -1,0 +1,36 @@
+<!-- Hier wird die Spielerkomponente für jeden Spieler erstellt. Die Anzahl und Namen der Spieler werden aus dem game.players Array genommen. 
+Für jeden Spieler im Array wird eine neue Instanz von app-player erstellt. Das Attribut [name] wird auf den Namen des aktuellen Spielers gesetzt.
+Die Position der Spieler wird dynamisch basierend auf ihrem Index im Array bestimmt.-->
+<app-player
+ *ngFor="let player of game.players; let i = index" [ngStyle]="{'top.px': 100 + ( i * 120), 'right.px': 0}"
+    [name]="player"
+ class="player-position"></app-player>
+
+<div class="field">
+
+    <div class="card-stack">
+
+        <!-- Erzeugt die Kartenstapel-Visualisierung durch Schleifen über ein Array mit vier Elementen. 
+        Jedes Element im Array stellt eine Karte im Stapel dar. Die Verschiebung jeder Karte wird basierend auf ihrem Index im Array bestimmt.-->
+        <img  *ngFor="let c of[0,1,2,3]; let i = index;" [ngStyle]="{'right.px': i * 5}"
+         src="../../assets/img/cards/card_cover.png" alt="">
+
+         <!-- Definiert die oberste Karte im Stapel. 
+         Wenn auf diese Karte geklickt wird, wird die takeCard() Funktion ausgeführt.-->
+         <img (click)="takeCard()"  class="top-card" style="right: 25px;" src="../../assets/img/cards/card_cover.png" alt="">
+         
+        <!-- Zeigt die bereits gespielten Karten an. 
+        Für jede Karte im game.playedCards Array wird ein neues img-Element erstellt. -->
+         <img *ngFor="let card of game.playedCards" class="played-card" src="../../assets/img/cards/{{ card }}.png" alt="">
+
+         <!-- Zeigt die aktuell gezogene Karte an und führt eine Animation aus, wenn eine Karte gezogen wird. 
+         Die Karte wird nur angezeigt, wenn pickCardAnimation true ist. 
+         Der Quellpfad der Karte basiert auf dem Wert von currentCard. -->
+         <img (click)="takeCard()" *ngIf="pickCardAnimation" class=" pick-card" style="right: 25px;" 
+         src="../../assets/img/cards/{{ currentCard }}.png" alt="">
+    </div>
+</div>
+
+<button mat-fab color="primary" class="btn-add" (click)="openDialog()" >
+    <mat-icon>add</mat-icon>
+  </button>
