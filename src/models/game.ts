@@ -1,7 +1,7 @@
 // Definition der Spielklasse
 export class Game {
     // Array zum Speichern der Namen der Spieler
-    public players: string[] = ['Hans', 'Freddy', 'Peter'];
+    public players: string[] = [];
 
     // Array zum Speichern des Kartenstapels, jede Karte ist als String repräsentiert
     public stack: string[] =  [];
@@ -15,7 +15,7 @@ export class Game {
     // Konstruktor der Klasse
     constructor() {
         // Fügt jede Karte als String zum Stapel hinzu, wobei jeder Kartentyp 13 verschiedene Karten hat
-        for (let i = 0; i < 13; i++) {
+        for (let i = 1; i < 13; i++) {
             this.stack.push('spade_' + i) // Pik
             this.stack.push('hearts_' + i) // Herz
             this.stack.push('diamonds_' + i) // Karo

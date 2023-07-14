@@ -31,6 +31,8 @@ export class GameComponent {
         console.log(this.currentCard);
         console.log(this.game);
 
+        this.game.currentPlayer++;
+        this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
         
 
         setTimeout(() => {
@@ -46,8 +48,11 @@ export class GameComponent {
 openDialog(): void {
   const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
+  dialogRef.afterClosed().subscribe(name => {
+    if(name && name.length > 0) {
+      this.game.players.push(name);
+    }
+    
    
   });
 }

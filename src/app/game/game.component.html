@@ -2,8 +2,9 @@
 Für jeden Spieler im Array wird eine neue Instanz von app-player erstellt. Das Attribut [name] wird auf den Namen des aktuellen Spielers gesetzt.
 Die Position der Spieler wird dynamisch basierend auf ihrem Index im Array bestimmt.-->
 <app-player
- *ngFor="let player of game.players; let i = index" [ngStyle]="{'top.px': 100 + ( i * 120), 'right.px': 0}"
-    [name]="player"
+ *ngFor="let player of game.players; let i = index" [ngStyle]="{'top.px': 100 + ( i * 90), 'right.px': 0}"
+ [playerActive]="i == game.currentPlayer"
+ [name]="player"
  class="player-position"></app-player>
 
 <div class="field">
@@ -30,6 +31,8 @@ Die Position der Spieler wird dynamisch basierend auf ihrem Index im Array besti
          src="../../assets/img/cards/{{ currentCard }}.png" alt="">
     </div>
 </div>
+
+<app-game-info [card]="currentCard" class="game-info"></app-game-info>
 
 <button mat-fab color="primary" class="btn-add" (click)="openDialog()" >
     <mat-icon>add</mat-icon>
